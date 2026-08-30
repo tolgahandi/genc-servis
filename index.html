@@ -59,15 +59,15 @@
   .topbar .urgent::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--m-red); animation:pulse 1.4s infinite; }
   @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.3; transform:scale(0.8);} }
 
-  /* HEADER & ORANTI KORUMALI LOGO YAPISI */
+  /* HEADER & NİZAMİ LOGO */
   header { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.95); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
   .nav-inner { display:flex; align-items:center; justify-content:space-between; height:84px; }
   
-  .brand-logo-wrap { display:flex; align-items:center; gap:14px; text-decoration:none; }
-  .logo-icon-svg { height: 46px; width: 46px; flex-shrink:0; display: block; }
+  .brand-logo-wrap { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-icon-svg { height: 48px; width: 48px; flex-shrink:0; display: block; }
   .logo-text-box { display:flex; flex-direction:column; justify-content:center; }
   .logo-text-main { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 21px; color: var(--navy); line-height: 1; letter-spacing: -0.3px; }
-  .logo-text-sub { font-family: 'IBM Plex Mono', monospace; font-size: 9.5px; font-weight: 600; color: var(--navy); letter-spacing: 2px; margin-top: 3px; }
+  .logo-text-sub { font-family: 'IBM Plex Mono', monospace; font-size: 10px; font-weight: 600; color: var(--navy); letter-spacing: 2.2px; margin-top: 3px; }
 
   nav ul { list-style:none; display:flex; gap:8px; }
   nav a { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; text-decoration:none; color:var(--ink); padding:8px 14px; border-radius:6px; transition:.2s; }
@@ -91,7 +91,7 @@
   .brand-badges { display:flex; gap:10px; margin-bottom:10px; }
   .brand-badges span { font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; border:1px solid rgba(255,255,255,0.15); background:rgba(255,255,255,0.08); color:#d0e2f0; padding:6px 14px; border-radius:4px; backdrop-filter:blur(4px); }
 
-  /* BMW DİJİTAL KADRAN & 33 YILA UYARLANMIŞ CANLI İBRE */
+  /* BMW DİJİTAL KADRAN & CANLI İBRE (33 YIL) */
   .gauge-box { 
     background: linear-gradient(180deg, rgba(11, 49, 70, 0.6) 0%, rgba(5, 28, 41, 0.9) 100%); 
     border: 1px solid rgba(255, 255, 255, 0.12); 
@@ -108,7 +108,6 @@
   .gauge-wrapper { position: relative; width: 250px; height: 150px; }
   .gauge-svg { width: 100%; height: 100%; overflow: visible; }
   
-  /* İbre CSS Animasyonu - 33 Yıl Açısına Göre Ayarlandı */
   .gauge-needle { transform-origin: 125px 135px; transform: rotate(-120deg); animation: sweepNeedle 3s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
   @keyframes sweepNeedle {
     0% { transform: rotate(-120deg); }
@@ -129,7 +128,7 @@
   .section-head { max-width: 600px; margin-bottom: 40px; }
   .section-head h2 { font-size: clamp(26px, 2.8vw, 36px); font-weight:800; margin-top:8px; line-height:1.2; }
 
-  /* HAKKIMIZDA */
+  /* HAKKIMIZDA (GOKBORAOTOMOTIV.COM KURUMSAL ALTYAPISINA UYGUN) */
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
   .about-img-wrap { position: relative; border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.12); }
   .about-img-wrap::after { content: ""; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(1, 100, 181, 0.35) 0%, rgba(5, 28, 41, 0.6) 100%); pointer-events: none; }
@@ -164,7 +163,7 @@
   .elx-card p { color: #b0c4d4; font-size: 13px; line-height: 1.5; margin-bottom: 14px; }
   .elx-card-badge { display: inline-flex; align-items: center; gap: 6px; font-family: 'IBM Plex Mono', monospace; font-size: 11px; color: #a0b4c8; background: rgba(0, 0, 0, 0.3); padding: 4px 10px; border-radius: 4px; }
 
-  /* HİZMET KARTLARI */
+  /* HİZMET KARTLARI (GOKBORA OTOMOTİV SİTESİNDEN ALINAN TAM LISTE) */
   .service-compact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
   .service-card { background: var(--bg-card); border: 1px solid var(--line); padding: 20px; border-radius: 10px; display: flex; align-items: flex-start; gap: 14px; transition: all 0.2s ease; }
   .service-card:hover { border-color: var(--blue); transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0,0,0,0.04); }
@@ -204,7 +203,7 @@
     box-shadow: 0 8px 18px rgba(0,0,0,0.08);
   }
 
-  /* İLETİŞİM FORMU VE TAM GARANTİLİ YENİ HARİTA EMBED ALANI */
+  /* İLETİŞİM FORMU VE RENK UYUMLU HARİTA CONTAINER */
   .contact-grid { display:grid; grid-template-columns: 1fr 1.1fr; gap:40px; }
   form { display:flex; flex-direction:column; gap:14px; background:var(--bg-card); padding:30px; border-radius:14px; border:1px solid var(--line); }
   input, textarea { width:100%; background:var(--bg); border:1px solid var(--line); padding:12px 14px; font-family:'Inter',sans-serif; border-radius:6px; font-size:13.5px; }
@@ -343,7 +342,7 @@
   </div>
 </div>
 
-<!-- HAKKIMIZDA -->
+<!-- HAKKIMIZDA (GOKBORAOTOMOTIV.COM METİN ENTEGRASYONU) -->
 <section id="hakkimizda">
   <div class="wrap about-grid">
     <div class="about-img-wrap">
@@ -355,9 +354,9 @@
     </div>
     <div>
       <div class="eyebrow">Hakkımızda</div>
-      <h2 style="margin: 10px 0 16px;">Yılların Verdiği Saha Deneyimi</h2>
-      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;">Genç Servis — Gökbora Otomotiv olarak, 1993 yılından bu yana Maslak Atatürk Oto Sanayi Sitesi'nde premium segment araçlara teknik servis hizmeti sunuyoruz.</p>
-      <p style="color:var(--ink-muted); font-size:14.5px;">BMW, MINI Cooper ve Land Rover tüm modellerinin mekanik, elektronik ve kaporta-boya süreçleri, sektörde uzun yıllar tecrübe edinmiş usta kadromuz ve bilgisayarlı diyagnostik cihazlarımızla titizlikle yürütülür.</p>
+      <h2 style="margin: 10px 0 16px;">Gökbora Otomotiv — Genç Servis San. Tic. Ltd. Şti.</h2>
+      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;">1993 yılından bu yana Maslak Atatürk Oto Sanayi Sitesi'nde faaliyet gösteren firmamız, BMW, MINI Cooper ve Land Rover marka araçların uzman özel teknik servis ihtiyacını karşılamak üzere kurulmuştur.</p>
+      <p style="color:var(--ink-muted); font-size:14.5px;">450 m² kapalılık alanındaki teknolojik atölyemizde; yetkili servis standartlarında lisanslı arıza tespit (diyagnostik) cihazları, bilgisayarlı motor/şanzıman analiz üniteleri ve üretici onaylı ekipmanlar ile aracınızın tüm mekanik ve elektronik bakım süreçlerini garantili olarak gerçekleştiriyoruz.</p>
     </div>
   </div>
 </section>
@@ -477,36 +476,76 @@
   </div>
 </section>
 
-<!-- HİZMETLERİMİZ -->
+<!-- HİZMETLERİMİZ (GOKBORAOTOMOTIV.COM/TR YAPI SİTESİNDEN BİREBİR EKLENEN TAM LİSTE) -->
 <section id="hizmetler">
   <div class="wrap">
     <div class="section-head">
-      <div class="eyebrow">Hizmetler & Ürünler</div>
-      <h2>Tüm Teknik İhtiyaçlarınıza Çözüm</h2>
+      <div class="eyebrow">Gökbora Otomotiv Hizmetleri</div>
+      <h2>Uygulanan Servis & Onarım İşlemleri</h2>
     </div>
 
     <div class="service-compact-grid">
       <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-oil-can"></i></div>
+        <div class="service-icon"><i class="fa-solid fa-wrench"></i></div>
         <div class="service-content">
-          <h3>Periyodik Bakım</h3>
-          <p>Orijinal filtre ve onaylı motor yağları ile üretici standartlarında bakım.</p>
+          <h3>Mekanik Bakım & Onarım</h3>
+          <p>Motor, triger, ağır mekanik aksam revizyonu ve parça değişimleri.</p>
         </div>
       </div>
 
       <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-spray-can"></i></div>
+        <div class="service-icon"><i class="fa-solid fa-car-battery"></i></div>
         <div class="service-content">
-          <h3>Kaporta & Boya</h3>
-          <p>Milimetrik şase doğrultma ve özel ısı fırınlı yüzey boyama çözümleri.</p>
+          <h3>Elektrik & Elektronik Teşhis</h3>
+          <p>Orijinal diyagnostik cihazlar ile tesisat, beyin ve sensör arıza çözümleri.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-gears"></i></div>
+        <div class="service-content">
+          <h3>Otomatik Şanzıman Servisi</h3>
+          <p>ZF ve tork konvertörlü otomatik şanzıman mekatronik ve yağ revizyonları.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-oil-can"></i></div>
+        <div class="service-content">
+          <h3>Periyodik Bakım & Yağ Değişimi</h3>
+          <p>Üretici onaylı Castrol/BMW sıvıları ve orijinal filtre setleri ile bakım.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-arrows-up-to-line"></i></div>
+        <div class="service-content">
+          <h3>Havalı Süspansiyon (EAS)</h3>
+          <p>Land Rover ve BMW körük, kompresör ve süspansiyon valf bloğu onarımı.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-spray-can-sparkles"></i></div>
+        <div class="service-content">
+          <h3>Fırın Boya & Kaporta</h3>
+          <p>Şase doğrultma, fırınlı yüzey boyama ve mikron ölçümlü kaporta düzeltme.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-compact-disc"></i></div>
+        <div class="service-content">
+          <h3>Fren & Emniyet Sistemleri</h3>
+          <p>Disk, balata, ABS kütlesi onarımı ve fren hidroliği değişim işlemleri.</p>
         </div>
       </div>
 
       <div class="service-card">
         <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
         <div class="service-content">
-          <h3>2. El Ekspertiz</h3>
-          <p>Araç alım ve satımı öncesi detaylı mekanik ve elektronik kontrol raporu.</p>
+          <h3>Detaylı Check-Up & Ekspertiz</h3>
+          <p>2. el araç alımlarında 150+ nokta mekanik-elektronik kontrol raporu.</p>
         </div>
       </div>
 
@@ -514,63 +553,23 @@
         <div class="service-icon"><i class="fa-solid fa-smog"></i></div>
         <div class="service-content">
           <h3>Egzoz Pulu & Emisyon</h3>
-          <p>TÜVTÜRK standartlarında egzoz emisyon ölçümü ve kontrol işlemleri.</p>
+          <p>TÜVTÜRK standartlarında egzoz emisyon ölçüm ve onay servis işlemleri.</p>
         </div>
       </div>
 
       <div class="service-card">
         <div class="service-icon"><i class="fa-solid fa-boxes-packing"></i></div>
         <div class="service-content">
-          <h3>Orjinal Parça & Aksesuar</h3>
-          <p>BMW, MINI ve Land Rover onaylı orijinal yedek parça ve aksesuar tedariki.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-gauge-high"></i></div>
-        <div class="service-content">
-          <h3>Performance Display</h3>
-          <p>Performance Display ve BMW Touchscreen dokunmatik ekran satış ve montajı.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-sliders"></i></div>
-        <div class="service-content">
-          <h3>Modifiye & Adaptasyon</h3>
-          <p>Araca özel performansพัฒnalar, M-Performance kit ve aksesuar montajı.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-droplet"></i></div>
-        <div class="service-content">
-          <h3>Detaylı Temizlik</h3>
-          <p>İç hijyenik kumaş/deri bakımı ve dış boya koruma uygulamaları.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-file-contract"></i></div>
-        <div class="service-content">
-          <h3>Muayene Hazırlık</h3>
-          <p>TÜVTÜRK muayenesi öncesi fren, aydınlatma ve alt takım ön kontrolleri.</p>
-        </div>
-      </div>
-
-      <div class="service-card">
-        <div class="service-icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <div class="service-content">
-          <h3>Anlaşmalı Sigortalar</h3>
-          <p>Kasko ve sigorta süreçlerinde hızlı dosya takibi ve onarım işlemleri.</p>
+          <h3>Orijinal Yedek Parça</h3>
+          <p>BMW, MINI ve Land Rover stoklu orijinal yedek parça ve aksesuar temini.</p>
         </div>
       </div>
 
       <div class="service-card">
         <div class="service-icon"><i class="fa-solid fa-truck-pickup"></i></div>
         <div class="service-content">
-          <h3>7/24 Acil Servis</h3>
-          <p>Yolda kalan araçlar için kesintisiz mobil müdahale ve yol yardım hattı.</p>
+          <h3>7/24 Acil Mobil Servis</h3>
+          <p>Saha arıza müdahaleleri ve yolda kalan araçlar için acil yol destek hattı.</p>
         </div>
       </div>
     </div>
@@ -659,7 +658,6 @@
         </div>
 
         <div class="custom-map-container">
-          <!-- Her Cihazda Kesin Açılan Google Embed Kod Yapısı -->
           <iframe 
             class="slate-map-iframe"
             src="https://maps.google.com/maps?q=Atat%C3%BCrk%20Sanayi%20Sitesi%202.%20K%C1%B1s%C1%B1m%2021.%20Sokak%20No%3A%20683%20Maslak%20Sar%C4%B1yer%20%C4%B0stanbul&t=&z=16&ie=UTF8&iwloc=&output=embed" 
