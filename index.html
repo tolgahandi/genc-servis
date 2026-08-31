@@ -266,6 +266,8 @@
   .submit-btn { background:var(--navy); color:#fff; font-family:'IBM Plex Mono',monospace; font-weight:600; padding:14px; border:none; border-radius:6px; cursor:pointer; transition:.2s; }
   .submit-btn:hover { background:var(--navy-dk); }
 
+  .date-time-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
   .custom-map-container { position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--navy); height: 100%; min-height: 380px; background: var(--navy-dk); }
   .slate-map-iframe { width: 100%; height: 100%; border: 0; filter: grayscale(75%) contrast(110%) hue-rotate(190deg); opacity: 0.95; }
 
@@ -303,6 +305,7 @@
     .trust-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
     .site-logo-img { height: 60px; }
     .nav-inner { height: 84px; }
+    .date-time-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -653,7 +656,7 @@
   </div>
 </section>
 
-<!-- İLETİŞİM FORMU VE HARİTA (ÇALIŞMA SAATLERİ KISITLAMALI FORUM) -->
+<!-- İLETİŞİM FORMU VE HARİTA (TARİH / KISITLI SAAT SEÇİCİ) -->
 <section id="iletisim">
   <div class="wrap">
     <div class="section-head">
@@ -672,13 +675,21 @@
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="E-POSTA (TAKVİM DAVETİYESİ İÇİN)" data-en="E-MAIL (FOR CALENDAR INVITE)">E-POSTA (TAKVİM DAVETİYESİ İÇİN)</label>
         <input type="email" name="eposta" required placeholder="ornek@email.com">
 
-        <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU TARİHİ VE SAATİ (ÇALIŞMA SAATLERİ İÇİNDE)" data-en="APPOINTMENT DATE & TIME (WORKING HOURS)">RANDEVU TARİHİ VE SAATİ (ÇALIŞMA SAATLERİ İÇİNDE)</label>
-        <input type="datetime-local" id="tarihInput" name="tarih" required style="color:var(--navy); font-weight:600;">
-
-        <!-- ÇALIŞMA SAATLERİ BİLGİLENDİRME ETİKETİ -->
-        <div style="font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--blue); background:rgba(1,100,181,0.06); padding:8px 12px; border-radius:6px; border-left:3px solid var(--blue); margin-top:-6px; margin-bottom:4px;">
-          <i class="fa-solid fa-clock"></i> <b>Çalışma Saatleri:</b> Hafta İçi: 08:30 - 18:30 | Cumartesi: 08:30 - 15:00 | Pazar: Kapalı
+        <div class="date-time-grid">
+          <div>
+            <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU TARİHİ" data-en="APPOINTMENT DATE">RANDEVU TARİHİ</label>
+            <input type="date" id="tarihInput" name="tarih_gun" required onchange="updateTimeSlots()" style="color:var(--navy); font-weight:600;">
+          </div>
+          <div>
+            <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU SAATİ" data-en="APPOINTMENT TIME">RANDEVU SAATİ</label>
+            <select id="saatInput" name="tarih_saat" required style="color:var(--navy); font-weight:600;">
+              <option value="" disabled selected data-tr="Önce Tarih Seçiniz" data-en="Select Date First">Önce Tarih Seçiniz</option>
+            </select>
+          </div>
         </div>
+
+        <!-- Gizli Birleşik Tarih Alanı (Google Apps Script için) -->
+        <input type="hidden" id="tarihBirlestirilmis" name="tarih">
 
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="ARAÇ MODELİ & TALEBİNİZ" data-en="VEHICLE MODEL & REQUEST">ARAÇ MODELİ & TALEBİNİZ</label>
         <textarea name="talep" rows="3" placeholder="Örn: BMW 320i - Zincir değişimi ve periyodik bakım"></textarea>
@@ -766,8 +777,14 @@
   </div>
 </div>
 
-<!-- JAVASCRIPT KODLARI: DİL DEĞİŞTİRME VE ÇALIŞMA SAATİ KONTROLLÜ RANDEVU -->
+<!-- JAVASCRIPT KODLARI: DİL DEĞİŞTİRME VE ÇALIŞMA SAATLERİNE GÖRE AKILLI DOLDURMA -->
 <script>
+// BUGÜNÜN TARİHİNİ MİNİMUM TARİH YAPMA (GEÇMİŞ SEÇİLEMEZ)
+document.addEventListener("DOMContentLoaded", function() {
+  var today = new Date().toISOString().split('T')[0];
+  document.getElementById("tarihInput").setAttribute('min', today);
+});
+
 // DİL DEĞİŞTİRME
 function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -785,43 +802,65 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// ÇALIŞMA SAATİ KONTROLÜ VE GOOGLE RANDEVU GÖNDERİMİ
+// TARİHE GÖRE ÇALIŞMA SAATLERİNİ OTOMATİK LİSTELEME
+function updateTimeSlots() {
+  var tarihValue = document.getElementById('tarihInput').value;
+  var saatSelect = document.getElementById('saatInput');
+  
+  saatSelect.innerHTML = ''; // Temizle
+
+  if (!tarihValue) return;
+
+  var selectedDate = new Date(tarihValue);
+  var day = selectedDate.getDay(); // 0: Pazar, 1: Pzt, ..., 6: Cmt
+
+  // PAZAR GÜNÜ KONTROLÜ
+  if (day === 0) {
+    alert("Pazar günleri kapalıyız. Lütfen Pazartesi - Cumartesi arasında bir gün seçiniz.");
+    document.getElementById('tarihInput').value = '';
+    saatSelect.innerHTML = '<option value="" disabled selected>Pazar Günleri Kapalıyız</option>';
+    return;
+  }
+
+  var startHour = 8;
+  var startMin = 30;
+  var endHour = (day === 6) ? 14 : 18; // Cumartesi 14:30 son, Hafta içi 18:00 son
+  var endMin = 30;
+
+  var current = new Date();
+  current.setHours(startHour, startMin, 0);
+
+  var end = new Date();
+  end.setHours(endHour, endMin, 0);
+
+  while (current <= end) {
+    var h = String(current.getHours()).padStart(2, '0');
+    var m = String(current.getMinutes()).padStart(2, '0');
+    var timeString = h + ":" + m;
+
+    var option = document.createElement('option');
+    option.value = timeString;
+    option.textContent = timeString;
+    saatSelect.appendChild(option);
+
+    current.setMinutes(current.getMinutes() + 30); // 30 Dk Aralıklarla
+  }
+}
+
+// FORM GÖNDERİMİ
 function submitAppointment(event) {
   event.preventDefault();
   
-  var tarihValue = document.getElementById('tarihInput').value;
-  if (!tarihValue) {
+  var gun = document.getElementById('tarihInput').value;
+  var saat = document.getElementById('saatInput').value;
+
+  if (!gun || !saat) {
     alert("Lütfen randevu tarihi ve saatini seçiniz.");
     return;
   }
 
-  var selectedDate = new Date(tarihValue);
-  var day = selectedDate.getDay(); // 0: Pazar, 1: Pazartesi ... 6: Cumartesi
-  var hours = selectedDate.getHours();
-  var minutes = selectedDate.getMinutes();
-  var timeInMinutes = hours * 60 + minutes;
-
-  // 1. Pazar Günü Kontrolü
-  if (day === 0) {
-    alert("Pazar günleri servisimiz kapalıdır. Lütfen Pazartesi - Cumartesi günleri arasında bir zaman seçiniz.");
-    return;
-  }
-
-  // 2. Hafta İçi Çalışma Saatleri (08:30 - 18:30 ➔ 510 dk - 1110 dk)
-  if (day >= 1 && day <= 5) {
-    if (timeInMinutes < 510 || timeInMinutes > 1110) {
-      alert("Hafta içi çalışma saatlerimiz 08:30 - 18:30 arasındadır. Lütfen bu saatler arasında bir randevu seçiniz.");
-      return;
-    }
-  }
-
-  // 3. Cumartesi Çalışma Saatleri (08:30 - 15:00 ➔ 510 dk - 900 dk)
-  if (day === 6) {
-    if (timeInMinutes < 510 || timeInMinutes > 900) {
-      alert("Cumartesi günleri çalışma saatlerimiz 08:30 - 15:00 arasındadır. Lütfen bu saatler arasında bir randevu seçiniz.");
-      return;
-    }
-  }
+  // Tarih ve saati birleştirip gizli input'a aktarma (ISO Formatı)
+  document.getElementById('tarihBirlestirilmis').value = gun + "T" + saat;
 
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
@@ -840,12 +879,14 @@ function submitAppointment(event) {
   .then(data => {
     alert('Randevu talebiniz başarıyla alınmıştır!\n\nGoogle Takvim davetiyesi ve onay detayları e-posta adresinize gönderilmiştir.');
     document.getElementById('appointmentForm').reset();
+    document.getElementById('saatInput').innerHTML = '<option value="" disabled selected>Önce Tarih Seçiniz</option>';
     btn.disabled = false;
     btn.textContent = "Randevu Talebini Gönder";
   })
   .catch(error => {
     alert('Randevu talebiniz başarıyla alınmıştır! Ekibimiz en kısa sürede sizinle iletişime geçecektir.');
     document.getElementById('appointmentForm').reset();
+    document.getElementById('saatInput').innerHTML = '<option value="" disabled selected>Önce Tarih Seçiniz</option>';
     btn.disabled = false;
     btn.textContent = "Randevu Talebini Gönder";
   });
