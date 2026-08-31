@@ -115,13 +115,13 @@
   .lang-btn { background: none; border: none; color: #bcd4e6; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; cursor: pointer; padding: 2px 6px; border-radius: 3px; transition: 0.2s; }
   .lang-btn.active, .lang-btn:hover { background: var(--blue); color: #fff; }
 
-  /* HEADER */
+  /* HEADER & %25 BÜYÜTÜLMÜŞ MÜKEMMEL ORANLI LOGO ALANI */
   header { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
-  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:88px; }
+  .nav-inner { display:flex; align-items:center; justify-content:space-between; height:96px; }
   
   .brand-logo-wrap { display:flex; align-items:center; text-decoration:none; }
   .site-logo-img {
-    height: 58px;
+    height: 72px; /* 58px'den 72px'e çıkarılarak %25 oranında büyütüldü */
     width: auto;
     object-fit: contain;
     display: block;
@@ -301,12 +301,14 @@
     .mobile-bar { display:block; }
     body { padding-bottom:50px; }
     .trust-inner { flex-direction: column; gap: 10px; align-items: flex-start; }
+    .site-logo-img { height: 52px; }
+    .nav-inner { height: 76px; }
   }
 </style>
 </head>
 <body>
 
-<!-- TOPBAR (BÜYÜK İ HARFİ İNGİLİZCE METİNLERDEN TAMAMEN TEMİZLENDİ) -->
+<!-- TOPBAR -->
 <div class="topbar">
   <div class="wrap">
     <span><i class="fa-solid fa-location-dot"></i> <span data-tr="Maslak Atatürk Oto Sanayi Sitesi, 2. Kısım" data-en="Maslak Atatürk Auto Repair Site, Section 2">Maslak Atatürk Oto Sanayi Sitesi, 2. Kısım</span></span>
@@ -320,7 +322,7 @@
   </div>
 </div>
 
-<!-- HEADER -->
+<!-- HEADER (%25 ORANINDA BÜYÜTÜLMÜŞ LOGO) -->
 <header>
   <div class="wrap nav-inner">
     <a href="#" class="brand-logo-wrap">
@@ -403,7 +405,7 @@
     <div>
       <div class="eyebrow" data-tr="Kurumsal" data-en="Corporate">Kurumsal</div>
       <h2 style="margin: 10px 0 16px;">Genç Servis</h2>
-      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
+      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişim, motor ve şanzıman revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişim, motor ve şanzıman revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
       <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır." data-en="In our fully equipped 450 m² technological workshop, we utilize licensed diagnostic tools, computerized engine and transmission analysis units, and manufacturer-approved equipment at authorized service standards.">450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır.</p>
       <p style="color:var(--ink-muted); font-size:14.5px;" data-tr="Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır." data-en="Always prioritizing customer satisfaction and driving safety, Genç Servis has been offering reliable solutions to premium vehicle owners for 33 years without compromising on original spare parts and meticulous craftsmanship.">Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır.</p>
     </div>
@@ -753,10 +755,9 @@
   </div>
 </div>
 
-<!-- DİL DEĞİŞTİRME JAVASCRIPT KODU (İNGİLİZCE HARF UYUMLU) -->
+<!-- DİL DEĞİŞTİRME JAVASCRIPT KODU -->
 <script>
 function setLanguage(lang) {
-  // Buton aktiflik durumlarını güncelle
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.remove('active');
     if (btn.textContent.toLowerCase() === lang) {
@@ -764,13 +765,11 @@ function setLanguage(lang) {
     }
   });
 
-  // data-tr ve data-en etiketine sahip elemanları bul ve değiştir
   document.querySelectorAll('[data-' + lang + ']').forEach(element => {
     let text = element.getAttribute('data-' + lang);
     element.textContent = text;
   });
 
-  // HTML lang özniteliğini güncelle
   document.documentElement.lang = lang;
 }
 </script>
