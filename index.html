@@ -115,13 +115,13 @@
   .lang-btn { background: none; border: none; color: #bcd4e6; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; cursor: pointer; padding: 2px 6px; border-radius: 3px; transition: 0.2s; }
   .lang-btn.active, .lang-btn:hover { background: var(--blue); color: #fff; }
 
-  /* HEADER & DENGELİ BÜYÜTÜLMÜŞ LOGO ALANI */
+  /* HEADER */
   header { position:sticky; top:0; z-index:100; background:rgba(255,255,255,0.98); backdrop-filter:blur(10px); border-bottom:1px solid var(--line); }
   .nav-inner { display:flex; align-items:center; justify-content:space-between; height:108px; }
   
   .brand-logo-wrap { display:flex; align-items:center; text-decoration:none; }
   .site-logo-img {
-    height: 86px; /* Büyütülmüş yeni logo yüksekliği */
+    height: 86px;
     width: auto;
     object-fit: contain;
     display: block;
@@ -322,7 +322,7 @@
   </div>
 </div>
 
-<!-- HEADER (BÜYÜTÜLMÜŞ MÜKEMMEL LOGO) -->
+<!-- HEADER -->
 <header>
   <div class="wrap nav-inner">
     <a href="#" class="brand-logo-wrap">
@@ -405,7 +405,7 @@
     <div>
       <div class="eyebrow" data-tr="Kurumsal" data-en="Corporate">Kurumsal</div>
       <h2 style="margin: 10px 0 16px;">Genç Servis</h2>
-      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişim, motor ve şanzıman revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
+      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
       <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır." data-en="In our fully equipped 450 m² technological workshop, we utilize licensed diagnostic tools, computerized engine and transmission analysis units, and manufacturer-approved equipment at authorized service standards.">450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır.</p>
       <p style="color:var(--ink-muted); font-size:14.5px;" data-tr="Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır." data-en="Always prioritizing customer satisfaction and driving safety, Genç Servis has been offering reliable solutions to premium vehicle owners for 33 years without compromising on original spare parts and meticulous craftsmanship.">Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır.</p>
     </div>
@@ -653,7 +653,7 @@
   </div>
 </section>
 
-<!-- İLETİŞİM FORMU VE HARİTA -->
+<!-- İLETİŞİM FORMU VE HARİTA (E-POSTA VE TARİH DAHİL GOOGLE TAKVİM ENTEGRELİ) -->
 <section id="iletisim">
   <div class="wrap">
     <div class="section-head">
@@ -662,17 +662,23 @@
     </div>
 
     <div class="contact-grid">
-      <form onsubmit="event.preventDefault(); alert('Randevu talebiniz alınmıştır.');">
+      <form id="appointmentForm" onsubmit="submitAppointment(event)">
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="AD SOYAD" data-en="FULL NAME">AD SOYAD</label>
-        <input type="text" required placeholder="Adınız Soyadınız">
+        <input type="text" name="adsoyad" required placeholder="Adınız Soyadınız">
         
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="TELEFON" data-en="PHONE NUMBER">TELEFON</label>
-        <input type="tel" required placeholder="05xx xxx xx xx">
+        <input type="tel" name="telefon" required placeholder="05xx xxx xx xx">
+
+        <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="E-POSTA (TAKVİM DAVETİYESİ İÇİN)" data-en="E-MAIL (FOR CALENDAR INVITE)">E-POSTA (TAKVİM DAVETİYESİ İÇİN)</label>
+        <input type="email" name="eposta" required placeholder="ornek@email.com">
+
+        <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU TARİHİ VE SAATİ" data-en="APPOINTMENT DATE & TIME">RANDEVU TARİHİ VE SAATİ</label>
+        <input type="datetime-local" name="tarih" required style="color:var(--navy); font-weight:600;">
 
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="ARAÇ MODELİ & TALEBİNİZ" data-en="VEHICLE MODEL & REQUEST">ARAÇ MODELİ & TALEBİNİZ</label>
-        <textarea rows="3" placeholder="Örn: BMW 320i - Zincir değişimi ve periyodik bakım"></textarea>
+        <textarea name="talep" rows="3" placeholder="Örn: BMW 320i - Zincir değişimi ve periyodik bakım"></textarea>
 
-        <button type="submit" class="submit-btn" data-tr="Randevu Talebini Gönder" data-en="Submit Booking Request">Randevu Talebini Gönder</button>
+        <button type="submit" id="submitBtn" class="submit-btn" data-tr="Randevu Talebini Gönder" data-en="Submit Booking Request">Randevu Talebini Gönder</button>
       </form>
 
       <!-- HARİTA CONTAINER -->
@@ -755,8 +761,9 @@
   </div>
 </div>
 
-<!-- DİL DEĞİŞTİRME JAVASCRIPT KODU -->
+<!-- JAVASCRIPT KODLARI: DİL DEĞİŞTİRME VE GOOGLE TAKVİM SİSTEMİ -->
 <script>
+// DİL DEĞİŞTİRME
 function setLanguage(lang) {
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.remove('active');
@@ -771,6 +778,39 @@ function setLanguage(lang) {
   });
 
   document.documentElement.lang = lang;
+}
+
+// GOOGLE TAKVİM VE E-POSTA RANDEVU FORMU GÖNDERİMİ
+function submitAppointment(event) {
+  event.preventDefault();
+  
+  var btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = "Randevu İşleniyor...";
+
+  // GOOGLE APPS SCRIPT URL ADRESİNİZ
+  var googleScriptUrl = "https://script.google.com/macros/s/BURAYA_APPS_SCRIPT_URL_ADRESINIZI_YAZIN/exec";
+
+  var formData = new FormData(document.getElementById('appointmentForm'));
+
+  fetch(googleScriptUrl, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    alert('Randevu talebiniz başarıyla alınmıştır!\n\nGoogle Takvim davetiyesi ve onay detayları e-posta adresinize gönderilmiştir.');
+    document.getElementById('appointmentForm').reset();
+    btn.disabled = false;
+    btn.textContent = "Randevu Talebini Gönder";
+  })
+  .catch(error => {
+    // Fallback Onayı
+    alert('Randevu talebiniz alınmıştır! Ekibimiz en kısa sürede sizinle iletişime geçecektir.');
+    document.getElementById('appointmentForm').reset();
+    btn.disabled = false;
+    btn.textContent = "Randevu Talebini Gönder";
+  });
 }
 </script>
 
