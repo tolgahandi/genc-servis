@@ -120,12 +120,7 @@
   .nav-inner { display:flex; align-items:center; justify-content:space-between; height:108px; }
   
   .brand-logo-wrap { display:flex; align-items:center; text-decoration:none; }
-  .site-logo-img {
-    height: 86px;
-    width: auto;
-    object-fit: contain;
-    display: block;
-  }
+  .site-logo-img { height: 86px; width: auto; object-fit: contain; display: block; }
 
   nav ul { list-style:none; display:flex; gap:8px; }
   nav a { font-family:'IBM Plex Mono',monospace; font-size:13px; font-weight:500; text-decoration:none; color:var(--ink); padding:8px 14px; border-radius:6px; transition:.2s; }
@@ -177,6 +172,41 @@
   .trust-item { font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: var(--ink-muted); display: flex; align-items: center; gap: 8px; }
   .trust-item b { color: var(--navy); font-weight: 700; }
   .trust-item .dot { width: 8px; height: 8px; background: var(--m-red); border-radius: 50%; display: inline-block; }
+
+  /* YENİLİK 3: ŞEFFAF SERVİS SÜREÇ REHBERİ */
+  .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 30px; }
+  .process-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; position: relative; }
+  .process-num { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 800; color: rgba(1,100,181,0.15); position: absolute; top: 12px; right: 16px; }
+  .process-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+  .process-card p { font-size: 12.5px; color: var(--ink-muted); line-height: 1.4; }
+
+  /* YENİLİK 2: İNTERAKTİF SSS (Soru Cevap) */
+  .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto; }
+  .faq-item { background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .faq-question { padding: 18px 20px; font-weight: 700; font-size: 15px; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-answer { padding: 0 20px 18px; font-size: 13.5px; color: var(--ink-muted); display: none; border-top: 1px solid var(--bg); padding-top: 12px; }
+
+  /* YENİLİK 1: CANLI WHATSAPP ŞASİ SORGU BUTONU (SAĞ ALT) */
+  .floating-wa-btn {
+    position: fixed;
+    bottom: 80px;
+    right: 24px;
+    background: #25D366;
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 98;
+    transition: transform 0.2s ease;
+  }
+  .floating-wa-btn:hover { transform: scale(1.05); }
 
   /* SEKSİYONLAR */
   section { padding: 80px 0; border-bottom: 1px solid var(--line); }
@@ -306,6 +336,7 @@
     .site-logo-img { height: 60px; }
     .nav-inner { height: 84px; }
     .date-time-grid { grid-template-columns: 1fr; }
+    .floating-wa-btn { bottom: 70px; right: 12px; font-size: 11px; padding: 10px 14px; }
   }
 </style>
 </head>
@@ -408,15 +439,51 @@
     <div>
       <div class="eyebrow" data-tr="Kurumsal" data-en="Corporate">Kurumsal</div>
       <h2 style="margin: 10px 0 16px;">Genç Servis</h2>
-      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişim, motor ve şanzıman revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
+      <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır." data-en="Located in Atatürk Auto Repair Site Section 2 since 1993, our company meets the specialized technical service, timing chain replacement, transmission, and engine overhaul needs of BMW, MINI Cooper, and Land Rover vehicles with high-quality standards.">1993'ten bu yana Atatürk Oto Sanayi Sitesi 2. Kısım'da yer alan firmamız; BMW, MINI Cooper ve Land Rover araçların özel teknik servis, zincir değişimi, şanzıman ve motor revizyon ihtiyaçlarını yüksek kalite standartlarıyla karşılamaktadır.</p>
       <p style="color:var(--ink-muted); margin-bottom:14px; font-size:14.5px;" data-tr="450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır." data-en="In our fully equipped 450 m² technological workshop, we utilize licensed diagnostic tools, computerized engine and transmission analysis units, and manufacturer-approved equipment at authorized service standards.">450 m² kapalı alana sahip tam donanımlı teknolojik atölyemizde; yetkili servis standartlarında lisanslı diyagnostik cihazlar, bilgisayarlı motor ve şanzıman analiz üniteleri ile üretici onaylı ekipmanlar kullanılmaktadır.</p>
       <p style="color:var(--ink-muted); font-size:14.5px;" data-tr="Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır." data-en="Always prioritizing customer satisfaction and driving safety, Genç Servis has been offering reliable solutions to premium vehicle owners for 33 years without compromising on original spare parts and meticulous craftsmanship.">Müşteri memnuniyetini ve sürüş güvenliğini her zaman en üst sırada tutan Genç Servis, orijinal yedek parça kullanımı ve titiz işçilik prensibinden ödün vermeden premium segment araç sahiplerine 33 yıldır güvenilir çözümler sunmaktadır.</p>
     </div>
   </div>
 </section>
 
+<!-- YENİLİK 3: SERVİS SÜREÇ REHBERİ -->
+<section id="surec" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow" data-tr="Şeffaf Onarım" data-en="Transparent Repair">Şeffaf Onarım</div>
+      <h2 data-tr="Adım Adım Servis Sürecimiz" data-en="Step-by-Step Service Process">Adım Adım Servis Sürecimiz</h2>
+    </div>
+
+    <div class="process-grid">
+      <div class="process-card">
+        <span class="process-num">01</span>
+        <h4 data-tr="Kabul & Teşhis" data-en="Reception & Diagnosis">Kabul & Teşhis</h4>
+        <p data-tr="Araç bilgisayarlı diyagnostik cihazına bağlanır ve tüm arıza kodları netleştirilir." data-en="Vehicle is connected to diagnostic tools to clarify all fault codes.">Araç bilgisayarlı diyagnostik cihazına bağlanır ve tüm arıza kodları netleştirilir.</p>
+      </div>
+
+      <div class="process-card">
+        <span class="process-num">02</span>
+        <h4 data-tr="Müşteri Onayı" data-en="Customer Approval">Müşteri Onayı</h4>
+        <p data-tr="Değişecek parçalar ve işçilik maliyetleri müşteri ile paylaşılır, onay alınır." data-en="Parts and labor costs are shared with the customer for explicit approval.">Değişecek parçalar ve işçilik maliyetleri müşteri ile paylaşılır, onay alınır.</p>
+      </div>
+
+      <div class="process-card">
+        <span class="process-num">03</span>
+        <h4 data-tr="Orijinal Onarım" data-en="Genuine Repair">Orijinal Onarım</h4>
+        <p data-tr="Kıdemli ustalar tarafından orijinal yedek parçalar kullanılarak işlem yapılır." data-en="Performed by senior technicians using genuine spare parts.">Kıdemli ustalar tarafından orijinal yedek parçalar kullanılarak işlem yapılır.</p>
+      </div>
+
+      <div class="process-card">
+        <span class="process-num">04</span>
+        <h4 data-tr="Test & Teslimat" data-en="Testing & Delivery">Test & Teslimat</h4>
+        <p data-tr="Araç yol testi ve son güvenlik kontrollerinden sonra temiz bir şekilde teslim edilir." data-en="Vehicle is delivered clean after road testing and final safety checks.">Araç yol testi ve son güvenlik kontrollerinden sonra temiz bir şekilde teslim edilir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- UZMANLIK ALANLARIMIZ -->
-<section id="uzmanliklar" style="background: #fff;">
+<section id="uzmanliklar">
   <div class="wrap">
     <div class="section-head">
       <div class="eyebrow" data-tr="Marka Uzmanlığı" data-en="Brand Expertise">Marka Uzmanlığı</div>
@@ -609,6 +676,48 @@
   </div>
 </section>
 
+<!-- YENİLİK 2: SIKÇA SORULAN SORULAR (SSS) -->
+<section id="sss" style="background:#fff;">
+  <div class="wrap">
+    <div class="section-head" style="text-align:center; margin: 0 auto 40px;">
+      <div class="eyebrow" style="justify-content:center;" data-tr="Aklınıza Takılanlar" data-en="FAQ">Aklınıza Takılanlar</div>
+      <h2 data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span data-tr="Zincir değişimi ne kadar sürer?" data-en="How long does timing chain replacement take?">Zincir değişimi ne kadar sürer?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" data-tr="BMW, MINI ve Land Rover araçlarda eksantrik zincir değişimi titiz işçilik ve test süreçleriyle birlikte ortalama 1 ile 2 iş günü içerisinde tamamlanır." data-en="Timing chain replacement for BMW, MINI, and Land Rover vehicles is typically completed within 1 to 2 business days including testing.">
+          BMW, MINI ve Land Rover araçlarda eksantrik zincir değişimi titiz işçilik ve test süreçleriyle birlikte ortalama 1 ile 2 iş günü içerisinde tamamlanır.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span data-tr="Orijinal yedek parça kullanıyor musunuz?" data-en="Do you use genuine spare parts?">Orijinal yedek parça kullanıyor musunuz?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" data-tr="Evet, tüm bakım ve onarımlarda üretici onaylı orijinal veya OEM (Orijinal Ekipman Üreticisi) parçalar kullanılmakta ve yapılan işlemler garantimiz altındadır." data-en="Yes, all maintenance and repairs utilize manufacturer-approved original or OEM parts, fully backed by our warranty.">
+          Evet, tüm bakım ve onarımlarda üretici onaylı orijinal veya OEM (Orijinal Ekipman Üreticisi) parçalar kullanılmakta ve yapılan işlemler garantimiz altındadır.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span data-tr="Aracımın servis sürecini nasıl takip edebilirim?" data-en="How can I track my vehicle's service progress?">Aracımın servis sürecini nasıl takip edebilirim?</span>
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer" data-tr="Aracınız söküldüğünde veya arızalı parça tespit edildiğinde tarafınıza fotoğraf ve video içeren bilgi iletilir, onayınız alınmadan hiçbir parça değişimi yapılmaz." data-en="You will receive photo and video updates once components are inspected. No parts are replaced without your prior approval.">
+          Aracınız söküldüğünde veya arızalı parça tespit edildiğinde tarafınıza fotoğraf ve video içeren bilgi iletilir, onayınız alınmadan hiçbir parça değişimi yapılmaz.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- GOOGLE YORUMLARI -->
 <section id="yorumlar">
   <div class="wrap">
@@ -656,7 +765,7 @@
   </div>
 </section>
 
-<!-- İLETİŞİM FORMU VE HARİTA (TARİH / KISITLI SAAT SEÇİCİ) -->
+<!-- İLETİŞİM FORMU VE HARİTA -->
 <section id="iletisim">
   <div class="wrap">
     <div class="section-head">
@@ -678,7 +787,7 @@
         <div class="date-time-grid">
           <div>
             <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU TARİHİ" data-en="APPOINTMENT DATE">RANDEVU TARİHİ</label>
-            <input type="date" id="tarihInput" name="tarih_gun" required onchange="updateTimeSlots()" style="color:var(--navy); font-weight:600;">
+            <input type="date" id="tarihInput" name="tarih_gun" required onchange="fetchCalendarAndSlots()" style="color:var(--navy); font-weight:600;">
           </div>
           <div>
             <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="RANDEVU SAATİ" data-en="APPOINTMENT TIME">RANDEVU SAATİ</label>
@@ -688,7 +797,6 @@
           </div>
         </div>
 
-        <!-- Gizli Birleşik Tarih Alanı (Google Apps Script için) -->
         <input type="hidden" id="tarihBirlestirilmis" name="tarih">
 
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="ARAÇ MODELİ & TALEBİNİZ" data-en="VEHICLE MODEL & REQUEST">ARAÇ MODELİ & TALEBİNİZ</label>
@@ -721,6 +829,12 @@
     </div>
   </div>
 </section>
+
+<!-- YENİLİK 1: HIZLI ŞASİ SORGU WHATSAPP BUTONU (SAĞ ALT) -->
+<a href="https://wa.me/905367701312?text=Merhaba,%20araç%20şasi%20numaram%20ile%20bakım/parça%20fiyatı%20öğrenmek%20istiyorum." target="_blank" rel="noopener" class="floating-wa-btn">
+  <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i>
+  <span data-tr="Şasi No İle Fiyat Sor" data-en="Check Price via VIN">Şasi No İle Fiyat Sor</span>
+</a>
 
 <!-- FOOTER -->
 <footer>
@@ -769,7 +883,7 @@
   </div>
 </footer>
 
-<!-- MOBİL HIZLI İLETİŞİM BARI -->
+<!-- MOBİL ALT BAR -->
 <div class="mobile-bar">
   <div class="mobile-bar-inner">
     <a href="tel:+905367701312" class="m-btn m-btn-call"><i class="fa-solid fa-truck-pickup"></i> <span data-tr="7/24 Kurtarıcı & Ara" data-en="24/7 Towing & Call">7/24 Kurtarıcı & Ara</span></a>
@@ -777,13 +891,28 @@
   </div>
 </div>
 
-<!-- JAVASCRIPT KODLARI: DİL DEĞİŞTİRME VE ÇALIŞMA SAATLERİNE GÖRE AKILLI DOLDURMA -->
+<!-- JAVASCRIPT KODLARI -->
 <script>
-// BUGÜNÜN TARİHİNİ MİNİMUM TARİH YAPMA (GEÇMİŞ SEÇİLEMEZ)
+var googleScriptUrl = "https://script.google.com/macros/s/BURAYA_APPS_SCRIPT_URL_ADRESINIZI_YAZIN/exec";
+
+// MİNİMUM TARİH KONTROLÜ
 document.addEventListener("DOMContentLoaded", function() {
   var today = new Date().toISOString().split('T')[0];
   document.getElementById("tarihInput").setAttribute('min', today);
 });
+
+// SSS AÇILIR KAPANIR MENÜ
+function toggleFaq(element) {
+  var answer = element.nextElementSibling;
+  var icon = element.querySelector('i');
+  if (answer.style.display === "block") {
+    answer.style.display = "none";
+    icon.className = "fa-solid fa-chevron-down";
+  } else {
+    answer.style.display = "block";
+    icon.className = "fa-solid fa-chevron-up";
+  }
+}
 
 // DİL DEĞİŞTİRME
 function setLanguage(lang) {
@@ -802,19 +931,18 @@ function setLanguage(lang) {
   document.documentElement.lang = lang;
 }
 
-// TARİHE GÖRE ÇALIŞMA SAATLERİNİ OTOMATİK LİSTELEME
-function updateTimeSlots() {
+// TAKVİM VE DOLU SAAT KONTROLÜ
+function fetchCalendarAndSlots() {
   var tarihValue = document.getElementById('tarihInput').value;
   var saatSelect = document.getElementById('saatInput');
   
-  saatSelect.innerHTML = ''; // Temizle
+  saatSelect.innerHTML = '<option value="" disabled selected>Takvim Kontrol Ediliyor...</option>';
 
   if (!tarihValue) return;
 
   var selectedDate = new Date(tarihValue);
-  var day = selectedDate.getDay(); // 0: Pazar, 1: Pzt, ..., 6: Cmt
+  var day = selectedDate.getDay();
 
-  // PAZAR GÜNÜ KONTROLÜ
   if (day === 0) {
     alert("Pazar günleri kapalıyız. Lütfen Pazartesi - Cumartesi arasında bir gün seçiniz.");
     document.getElementById('tarihInput').value = '';
@@ -822,9 +950,24 @@ function updateTimeSlots() {
     return;
   }
 
+  fetch(googleScriptUrl + "?date=" + tarihValue)
+    .then(response => response.json())
+    .then(data => {
+      var busySlots = data.busy || [];
+      buildTimeOptions(day, busySlots);
+    })
+    .catch(error => {
+      buildTimeOptions(day, []);
+    });
+}
+
+function buildTimeOptions(day, busySlots) {
+  var saatSelect = document.getElementById('saatInput');
+  saatSelect.innerHTML = '<option value="" disabled selected>Saat Seçiniz</option>';
+
   var startHour = 8;
   var startMin = 30;
-  var endHour = (day === 6) ? 14 : 18; // Cumartesi 14:30 son, Hafta içi 18:00 son
+  var endHour = (day === 6) ? 14 : 18;
   var endMin = 30;
 
   var current = new Date();
@@ -840,10 +983,17 @@ function updateTimeSlots() {
 
     var option = document.createElement('option');
     option.value = timeString;
-    option.textContent = timeString;
-    saatSelect.appendChild(option);
 
-    current.setMinutes(current.getMinutes() + 30); // 30 Dk Aralıklarla
+    if (busySlots.includes(timeString)) {
+      option.textContent = timeString + " (DOLU)";
+      option.disabled = true;
+      option.style.color = "#dc2626";
+    } else {
+      option.textContent = timeString;
+    }
+
+    saatSelect.appendChild(option);
+    current.setMinutes(current.getMinutes() + 30);
   }
 }
 
@@ -859,15 +1009,11 @@ function submitAppointment(event) {
     return;
   }
 
-  // Tarih ve saati birleştirip gizli input'a aktarma (ISO Formatı)
   document.getElementById('tarihBirlestirilmis').value = gun + "T" + saat;
 
   var btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = "Randevu İşleniyor...";
-
-  // GOOGLE APPS SCRIPT URL ADRESİNİZ
-  var googleScriptUrl = "https://script.google.com/macros/s/BURAYA_APPS_SCRIPT_URL_ADRESINIZI_YAZIN/exec";
 
   var formData = new FormData(document.getElementById('appointmentForm'));
 
@@ -877,7 +1023,7 @@ function submitAppointment(event) {
   })
   .then(response => response.json())
   .then(data => {
-    alert('Randevu talebiniz başarıyla alınmıştır!\n\nGoogle Takvim davetiyesi ve onay detayları e-posta adresinize gönderilmiştir.');
+    alert('Randevu talebiniz başarıyla onaylanmış ve Google Takvime işlenmiştir!\n\nDetaylar e-posta adresinize gönderilmiştir.');
     document.getElementById('appointmentForm').reset();
     document.getElementById('saatInput').innerHTML = '<option value="" disabled selected>Önce Tarih Seçiniz</option>';
     btn.disabled = false;
