@@ -59,6 +59,7 @@
 
 <!-- FAVICON -->
 <link rel="icon" type="image/jpeg" href="logo.jpg">
+<link rel="apple-touch-icon" href="logo.jpg">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -181,28 +182,6 @@
   .process-num { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 800; color: rgba(1,100,181,0.15); position: absolute; top: 12px; right: 16px; }
   .process-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
   .process-card p { font-size: 12.5px; color: var(--ink-muted); line-height: 1.4; }
-
-  /* CANLI WHATSAPP ŞASİ SORGU BUTONU (SAĞ ALT) */
-  .floating-wa-btn {
-    position: fixed;
-    bottom: 80px;
-    right: 24px;
-    background: #25D366;
-    color: #fff;
-    padding: 12px 20px;
-    border-radius: 50px;
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    z-index: 98;
-    transition: transform 0.2s ease;
-  }
-  .floating-wa-btn:hover { transform: scale(1.05); }
 
   /* KVKK ONAY KUTUCUĞU & MODAL STİLLERİ */
   .kvkk-checkbox-wrap {
@@ -402,7 +381,6 @@
     .site-logo-img { height: 60px; }
     .nav-inner { height: 84px; }
     .date-time-grid { grid-template-columns: 1fr; }
-    .floating-wa-btn { bottom: 70px; right: 12px; font-size: 11px; padding: 10px 14px; }
   }
 </style>
 </head>
@@ -789,7 +767,7 @@
   </div>
 </section>
 
-<!-- İLETİŞİM FORMU VE HARİTA (KVKK ONAYLI FORM) -->
+<!-- İLETİŞİM FORMU VE HARİTA (PLAKA & KVKK ONAYLI FORM) -->
 <section id="iletisim">
   <div class="wrap">
     <div class="section-head">
@@ -804,6 +782,9 @@
         
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="TELEFON" data-en="PHONE NUMBER">TELEFON</label>
         <input type="tel" name="telefon" required placeholder="05xx xxx xx xx">
+
+        <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="ARAÇ PLAKASI" data-en="LICENSE PLATE">ARAÇ PLAKASI</label>
+        <input type="text" name="plaka" required placeholder="Örn: 34 ABC 123" style="text-transform: uppercase;">
 
         <label class="mono" style="font-size:11.5px; font-weight:600; color:var(--ink-muted);" data-tr="E-POSTA (TAKVİM DAVETİYESİ İÇİN)" data-en="E-MAIL (FOR CALENDAR INVITE)">E-POSTA (TAKVİM DAVETİYESİ İÇİN)</label>
         <input type="email" name="eposta" required placeholder="ornek@email.com">
@@ -864,12 +845,6 @@
   </div>
 </section>
 
-<!-- HIZLI ŞASİ SORGU WHATSAPP BUTONU (SAĞ ALT) -->
-<a href="https://wa.me/905367701312?text=Merhaba,%20araç%20şasi%20numaram%20ile%20bakım/parça%20fiyatı%20öğrenmek%20istiyorum." target="_blank" rel="noopener" class="floating-wa-btn">
-  <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i>
-  <span data-tr="Şasi No İle Fiyat Sor" data-en="Check Price via VIN">Şasi No İle Fiyat Sor</span>
-</a>
-
 <!-- KVKK AÇILIR PENCERE (MODAL) -->
 <div id="kvkkModal" class="kvkk-modal-overlay">
   <div class="kvkk-modal-box">
@@ -879,7 +854,7 @@
     </div>
     <div class="kvkk-modal-body">
       <p><b>Gökbora Otomotiv San. ve Tic. Ltd. Şti. (Genç Servis)</b> olarak kişisel verilerinizin güvenliğine önem veriyoruz.</p><br>
-      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında; web sitemizde yer alan randevu formu aracılığıyla paylaştığınız Ad Soyad, Telefon, E-Posta ve Araç Bilgileriniz yalnızca:</p>
+      <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında; web sitemizde yer alan randevu formu aracılığıyla paylaştığınız Ad Soyad, Telefon, Plaka, E-Posta ve Araç Bilgileriniz yalnızca:</p>
       <br>
       <ul style="padding-left: 20px;">
         <li>Servis randevunuzun oluşturulması ve onaylanması,</li>
@@ -890,7 +865,7 @@
       <p>Kişisel verileriniz üçüncü şahıslarla veya reklam şirketleriyle kesinlikle paylaşılmamaktadır.</p>
     </div>
     <div class="kvkk-modal-footer">
-      <button onclick="closeKvkkModal()" class="cookie-btn" data-tr="Kapat & Anladım" data-en="Close & Understand">Kapat & Anladım</button>
+      <button onclick="closeKvkkModal()" class="cookie-btn" data-tr="Anladım, Kapat" data-en="Understood, Close">Anladım, Kapat</button>
     </div>
   </div>
 </div>
