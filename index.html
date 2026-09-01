@@ -103,15 +103,17 @@
 
   /* TOPBAR */
   .topbar { background: var(--navy-dk); font-family:'IBM Plex Mono', monospace; font-size:12px; color:#bcd4e6; }
-  .topbar .wrap { display:flex; justify-content:space-between; align-items:center; height:38px; }
+  .topbar .wrap { display:flex; justify-content:space-between; align-items:center; min-height:38px; padding-top:4px; padding-bottom:4px; }
   .topbar a { text-decoration:none; color:#bcd4e6; transition:.2s; }
   .topbar a:hover { color:#fff; }
-  .topbar .urgent { color:#ff8a7a; font-weight:600; display:flex; align-items:center; gap:8px; }
-  .topbar .urgent::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--m-red); animation:pulse 1.4s infinite; }
+  .topbar .urgent { color:#ff8a7a; font-weight:600; display:flex; align-items:center; gap:8px; white-space:nowrap; }
+  .topbar .urgent::before { content:""; width:8px; height:8px; border-radius:50%; background:var(--m-red); animation:pulse 1.4s infinite; flex-shrink:0; }
   @keyframes pulse { 0%,100%{opacity:1; transform:scale(1);} 50%{opacity:.3; transform:scale(0.8);} }
 
+  .topbar-right { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+
   /* DİL SEÇİCİ BUTONLARI */
-  .lang-switch { display: flex; gap: 4px; align-items: center; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; }
+  .lang-switch { display: flex; gap: 4px; align-items: center; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 4px; flex-shrink: 0; }
   .lang-btn { background: none; border: none; color: #bcd4e6; font-family: 'IBM Plex Mono', monospace; font-size: 11px; font-weight: 600; cursor: pointer; padding: 2px 6px; border-radius: 3px; transition: 0.2s; }
   .lang-btn.active, .lang-btn:hover { background: var(--blue); color: #fff; }
 
@@ -173,20 +175,14 @@
   .trust-item b { color: var(--navy); font-weight: 700; }
   .trust-item .dot { width: 8px; height: 8px; background: var(--m-red); border-radius: 50%; display: inline-block; }
 
-  /* YENİLİK 3: ŞEFFAF SERVİS SÜREÇ REHBERİ */
+  /* SERVİS SÜREÇ REHBERİ */
   .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 30px; }
   .process-card { background: var(--bg-card); border: 1px solid var(--line); border-radius: 12px; padding: 20px; position: relative; }
   .process-num { font-family: 'IBM Plex Mono', monospace; font-size: 28px; font-weight: 800; color: rgba(1,100,181,0.15); position: absolute; top: 12px; right: 16px; }
   .process-card h4 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
   .process-card p { font-size: 12.5px; color: var(--ink-muted); line-height: 1.4; }
 
-  /* YENİLİK 2: İNTERAKTİF SSS (Soru Cevap) */
-  .faq-list { display: flex; flex-direction: column; gap: 12px; max-width: 800px; margin: 0 auto; }
-  .faq-item { background: var(--bg-card); border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
-  .faq-question { padding: 18px 20px; font-weight: 700; font-size: 15px; color: var(--navy); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-  .faq-answer { padding: 0 20px 18px; font-size: 13.5px; color: var(--ink-muted); display: none; border-top: 1px solid var(--bg); padding-top: 12px; }
-
-  /* YENİLİK 1: CANLI WHATSAPP ŞASİ SORGU BUTONU (SAĞ ALT) */
+  /* CANLI WHATSAPP ŞASİ SORGU BUTONU (SAĞ ALT) */
   .floating-wa-btn {
     position: fixed;
     bottom: 80px;
@@ -207,6 +203,45 @@
     transition: transform 0.2s ease;
   }
   .floating-wa-btn:hover { transform: scale(1.05); }
+
+  /* ÇEREZ ONAY BİLDİRİMİ (KİBAR BANNER) */
+  .cookie-banner {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--navy-dk);
+    color: #fff;
+    padding: 16px 24px;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    max-width: 680px;
+    width: calc(100% - 32px);
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .cookie-banner p { font-size: 12.5px; color: #b0c4d4; line-height: 1.4; }
+  .cookie-banner a { color: var(--blue-glow); text-decoration: underline; }
+  .cookie-btn {
+    background: var(--blue);
+    color: #fff;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 6px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+  }
+  .cookie-btn:hover { background: var(--blue-glow); }
 
   /* SEKSİYONLAR */
   section { padding: 80px 0; border-bottom: 1px solid var(--line); }
@@ -327,7 +362,11 @@
   .m-btn-call { background:var(--m-red); color:#fff; }
   .m-btn-wa { background:#25D366; color:#fff; }
 
+  /* MOBİL DÜZENLEMELERİ */
   @media (max-width: 860px) {
+    .topbar .wrap { flex-direction: column; align-items: flex-start; gap: 6px; padding: 8px 16px; }
+    .topbar-right { width: 100%; justify-content: space-between; }
+    .topbar .urgent { font-size: 11px; }
     .hero-grid, .contact-grid, .about-grid, .footer-grid { grid-template-columns: 1fr; }
     nav { display:none; }
     .mobile-bar { display:block; }
@@ -337,6 +376,7 @@
     .nav-inner { height: 84px; }
     .date-time-grid { grid-template-columns: 1fr; }
     .floating-wa-btn { bottom: 70px; right: 12px; font-size: 11px; padding: 10px 14px; }
+    .cookie-banner { flex-direction: column; align-items: flex-start; text-align: left; bottom: 60px; }
   }
 </style>
 </head>
@@ -346,8 +386,8 @@
 <div class="topbar">
   <div class="wrap">
     <span><i class="fa-solid fa-location-dot"></i> <span data-tr="Maslak Atatürk Oto Sanayi Sitesi, 2. Kısım" data-en="Maslak Atatürk Auto Repair Site, Section 2">Maslak Atatürk Oto Sanayi Sitesi, 2. Kısım</span></span>
-    <div style="display:flex; align-items:center; gap:16px;">
-      <a class="urgent" href="tel:+905367701312"><i class="fa-solid fa-truck-pickup"></i> <span data-tr="7/24 KURTARICI & ACİL SERVİS: 0536 770 13 12" data-en="24/7 TOWING & EMERGENCY SERVICE: +90 536 770 13 12">7/24 KURTARICI & ACİL SERVİS: 0536 770 13 12</span></a>
+    <div class="topbar-right">
+      <a class="urgent" href="tel:+905367701312"><i class="fa-solid fa-truck-pickup"></i> <span data-tr="7/24 KURTARICI & ACİL SERVİS: 0536 770 13 12" data-en="24/7 TOWING & EMERGENCY: +90 536 770 13 12">7/24 KURTARICI & ACİL SERVİS: 0536 770 13 12</span></a>
       <div class="lang-switch">
         <button class="lang-btn active" onclick="setLanguage('tr')">TR</button>
         <button class="lang-btn" onclick="setLanguage('en')">EN</button>
@@ -446,7 +486,7 @@
   </div>
 </section>
 
-<!-- YENİLİK 3: SERVİS SÜREÇ REHBERİ -->
+<!-- SERVİS SÜREÇ REHBERİ -->
 <section id="surec" style="background:#fff;">
   <div class="wrap">
     <div class="section-head">
@@ -676,48 +716,6 @@
   </div>
 </section>
 
-<!-- YENİLİK 2: SIKÇA SORULAN SORULAR (SSS) -->
-<section id="sss" style="background:#fff;">
-  <div class="wrap">
-    <div class="section-head" style="text-align:center; margin: 0 auto 40px;">
-      <div class="eyebrow" style="justify-content:center;" data-tr="Aklınıza Takılanlar" data-en="FAQ">Aklınıza Takılanlar</div>
-      <h2 data-tr="Sıkça Sorulan Sorular" data-en="Frequently Asked Questions">Sıkça Sorulan Sorular</h2>
-    </div>
-
-    <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span data-tr="Zincir değişimi ne kadar sürer?" data-en="How long does timing chain replacement take?">Zincir değişimi ne kadar sürer?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" data-tr="BMW, MINI ve Land Rover araçlarda eksantrik zincir değişimi titiz işçilik ve test süreçleriyle birlikte ortalama 1 ile 2 iş günü içerisinde tamamlanır." data-en="Timing chain replacement for BMW, MINI, and Land Rover vehicles is typically completed within 1 to 2 business days including testing.">
-          BMW, MINI ve Land Rover araçlarda eksantrik zincir değişimi titiz işçilik ve test süreçleriyle birlikte ortalama 1 ile 2 iş günü içerisinde tamamlanır.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span data-tr="Orijinal yedek parça kullanıyor musunuz?" data-en="Do you use genuine spare parts?">Orijinal yedek parça kullanıyor musunuz?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" data-tr="Evet, tüm bakım ve onarımlarda üretici onaylı orijinal veya OEM (Orijinal Ekipman Üreticisi) parçalar kullanılmakta ve yapılan işlemler garantimiz altındadır." data-en="Yes, all maintenance and repairs utilize manufacturer-approved original or OEM parts, fully backed by our warranty.">
-          Evet, tüm bakım ve onarımlarda üretici onaylı orijinal veya OEM (Orijinal Ekipman Üreticisi) parçalar kullanılmakta ve yapılan işlemler garantimiz altındadır.
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <div class="faq-question" onclick="toggleFaq(this)">
-          <span data-tr="Aracımın servis sürecini nasıl takip edebilirim?" data-en="How can I track my vehicle's service progress?">Aracımın servis sürecini nasıl takip edebilirim?</span>
-          <i class="fa-solid fa-chevron-down"></i>
-        </div>
-        <div class="faq-answer" data-tr="Aracınız söküldüğünde veya arızalı parça tespit edildiğinde tarafınıza fotoğraf ve video içeren bilgi iletilir, onayınız alınmadan hiçbir parça değişimi yapılmaz." data-en="You will receive photo and video updates once components are inspected. No parts are replaced without your prior approval.">
-          Aracınız söküldüğünde veya arızalı parça tespit edildiğinde tarafınıza fotoğraf ve video içeren bilgi iletilir, onayınız alınmadan hiçbir parça değişimi yapılmaz.
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- GOOGLE YORUMLARI -->
 <section id="yorumlar">
   <div class="wrap">
@@ -830,11 +828,19 @@
   </div>
 </section>
 
-<!-- YENİLİK 1: HIZLI ŞASİ SORGU WHATSAPP BUTONU (SAĞ ALT) -->
+<!-- HIZLI ŞASİ SORGU WHATSAPP BUTONU (SAĞ ALT) -->
 <a href="https://wa.me/905367701312?text=Merhaba,%20araç%20şasi%20numaram%20ile%20bakım/parça%20fiyatı%20öğrenmek%20istiyorum." target="_blank" rel="noopener" class="floating-wa-btn">
   <i class="fa-brands fa-whatsapp" style="font-size:20px;"></i>
   <span data-tr="Şasi No İle Fiyat Sor" data-en="Check Price via VIN">Şasi No İle Fiyat Sor</span>
 </a>
+
+<!-- ÇEREZ ONAY BİLDİRİMİ (KİBAR BANNER) -->
+<div id="cookieBanner" class="cookie-banner" style="display:none;">
+  <p data-tr="Sitemizde deneyiminizi iyileştirmek için çerezler kullanılmaktadır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş olursunuz." data-en="We use cookies to improve your experience on our website. By continuing to use our site, you accept our use of cookies.">
+    Sitemizde deneyiminizi iyileştirmek için çerezler kullanılmaktadır. Sitemizi kullanmaya devam ederek çerez kullanımını kabul etmiş olursunuz.
+  </p>
+  <button onclick="acceptCookies()" class="cookie-btn" data-tr="Kabul Et" data-en="Accept">Kabul Et</button>
+</div>
 
 <!-- FOOTER -->
 <footer>
@@ -895,23 +901,24 @@
 <script>
 var googleScriptUrl = "https://script.google.com/macros/s/BURAYA_APPS_SCRIPT_URL_ADRESINIZI_YAZIN/exec";
 
-// MİNİMUM TARİH KONTROLÜ
+// MİNİMUM TARİH & ÇEREZ KONTROLÜ
 document.addEventListener("DOMContentLoaded", function() {
   var today = new Date().toISOString().split('T')[0];
   document.getElementById("tarihInput").setAttribute('min', today);
+
+  // Çerez Tercihi Kontrolü
+  if (!localStorage.getItem("gencServisCookieAccepted")) {
+    document.getElementById("cookieBanner").style.display = "flex";
+  }
 });
 
-// SSS AÇILIR KAPANIR MENÜ
-function toggleFaq(element) {
-  var answer = element.nextElementSibling;
-  var icon = element.querySelector('i');
-  if (answer.style.display === "block") {
-    answer.style.display = "none";
-    icon.className = "fa-solid fa-chevron-down";
-  } else {
-    answer.style.display = "block";
-    icon.className = "fa-solid fa-chevron-up";
-  }
+// ÇEREZ KABUL ETME
+function acceptCookies() {
+  localStorage.setItem("gencServisCookieAccepted", "true");
+  document.getElementById("cookieBanner").style.opacity = "0";
+  setTimeout(function() {
+    document.getElementById("cookieBanner").style.display = "none";
+  }, 300);
 }
 
 // DİL DEĞİŞTİRME
